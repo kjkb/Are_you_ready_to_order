@@ -16,9 +16,14 @@ class Public::MapsController < ApplicationController
      render :new
     end
   end
-  
+
   def show
     @map = Map.find(params[:id])
+  end
+
+  def search
+    # @maps = params[:map_id].present? ? Map.find(params[:map_id]).cooking_genre : ""
+    @maps = params[:map]
   end
 
 private
