@@ -1,0 +1,56 @@
+<div class = col-8>
+<% @maps.each do |map| %>
+  <%= map.body %>
+<% end %>
+
+<div id='map'></div>
+<style>
+#map {
+  height: 900px;
+  width: 100%;
+}
+</style>
+<!-- js部分 -->
+<script>
+    function initMap() {
+    //初期表示位置
+    let latlng = new google.maps.LatLng(38.60, 139.5);
+    //デザイン
+    let styles = [
+       {
+        stylers: [
+         { "saturation": 0 },
+         { "lightness": 0 }
+        ]
+       }
+      ];
+    let map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5.5,
+      styles: styles,
+      center: latlng
+    });
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+    <% @maps.each do |map| %>
+    ( function() {
+      let markerLatLng = new google.maps.LatLng({lat: <%= map.lat %>, lng: <%= map.lng %>});
+      let marker = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
+      let infowindow = new google.maps.InfoWindow({
+        position: markerLatLng,
+        content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.shop_name %></a>"
+        // content: "<%= link_to map.shop_name ,maps_path %>"
+
+      }); //ここで詳細ページへのリンクを表示させる
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    })();
+    <% end %>
+   }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+</div>

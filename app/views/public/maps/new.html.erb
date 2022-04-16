@@ -1,0 +1,79 @@
+
+<div class = col-3>
+    <input id="address" type="textbox">
+    <input type="button" value="検索" onclick="codeAddress()">
+    <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+
+    <%= form_with model:@map, url: '/maps', method: :post, local: true do |f| %>
+      <div class="actions">
+        <%= f.hidden_field :lat,:value =>"緯度", id: :lat %>
+        <%= f.hidden_field :lng,:value =>"経度", id: :lng %>
+        <%= f.label :shop_name,"お店の名前" %>
+        <%= f.text_field :shop_name %><br>
+        <dev class = row >
+        <%= f.label :cooking_genre,"料理のジャンル" %>
+        <%= f.select :cooking_genre, [['丼もの',1], ['揚げ物',2], ['ラーメン、麺類',3],['焼肉・鉄板焼',4], ['パスタ、ピザ',5], ['カレー',6],['寿司',7], ['中華',8], ['カフェ',9], ['その他',10]] %><br>
+        </div>
+        <%= f.label :body,"注文内容" %>
+        <%= f.text_area :body %><br>
+        注文内容の量について詳しくは<%= link_to 'こちら', home_about_path %><br>
+        <%= f.label :peko,"注文内容の量" %>
+        <%= f.select :peko, [['ちょいペコ',1], ['ペコ',2], ['ペコMAX',3]] %><br>
+        <%= f.label :image,"ランチ写真" %><%= f.file_field :image, accept: "image/*" %><br>
+        <%= f.submit %>
+      </div>
+    <% end %>
+</div>
+
+<div class = col-5>
+    <div id='map'></div>
+    <style>
+    #map {
+      height: 1000px;
+      width: 800px;
+    }
+    </style>
+    <script>
+    //初期マップの設定
+    let map
+    let marker
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+      map = new google.maps.Map(document.getElementById('map'), {
+        center:  {lat: 34.7334658, lng:135.5002547},  //新大阪駅
+        zoom: 15,
+      });
+    }
+    //検索後のマップ作成
+    let geocoder
+    let aft
+    function codeAddress(){
+      let inputAddress = document.getElementById('address').value;
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+            //マーカーが複数できないようにする
+            if (aft == true){
+                marker.setMap(null);
+            }
+            //新しくマーカーを作成する
+            map.setCenter(results[0].geometry.location);
+                marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                draggable: true // ドラッグ可能にする
+            });
+            aft = true
+            document.getElementById('lat').value = results[0].geometry.location.lat();
+            document.getElementById('lng').value = results[0].geometry.location.lng();
+            google.maps.event.addListener( marker, 'dragend', function(ev){
+                document.getElementById('lat').value = ev.latLng.lat();
+                document.getElementById('lng').value = ev.latLng.lng();
+            });
+        } else {
+          alert('該当する結果がありません：' + status);
+        }
+      });
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+</div>
