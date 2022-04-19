@@ -5,15 +5,15 @@
     <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
 
     <%= form_with model:@map, url: '/maps', method: :post, local: true do |f| %>
-      <div class="actions">
+      <div>
         <%= f.hidden_field :lat,:value =>"緯度", id: :lat %>
         <%= f.hidden_field :lng,:value =>"経度", id: :lng %>
         <%= f.label :shop_name,"お店の名前" %>
         <%= f.text_field :shop_name %><br>
-        <dev class = row >
+
         <%= f.label :cooking_genre,"料理のジャンル" %>
         <%= f.select :cooking_genre, [['丼もの',1], ['揚げ物',2], ['ラーメン、麺類',3],['焼肉・鉄板焼',4], ['パスタ、ピザ',5], ['カレー',6],['寿司',7], ['中華',8], ['カフェ',9], ['その他',10]] %><br>
-        </div>
+
         <%= f.label :body,"注文内容" %>
         <%= f.text_area :body %><br>
         注文内容の量について詳しくは<%= link_to 'こちら', home_about_path %><br>
@@ -25,7 +25,7 @@
     <% end %>
 </div>
 
-<div class = col-5>
+<div class = col-6>
     <div id='map'></div>
     <style>
     #map {

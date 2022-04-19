@@ -19,7 +19,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     end
     get 'home/about'
     get 'map/search'
-  end
+    resources :users, only: [:show] do 
+     get :favorites, on: :collection 
+    end
+end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

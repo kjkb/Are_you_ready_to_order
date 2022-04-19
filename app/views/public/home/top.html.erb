@@ -1,10 +1,14 @@
 <div class = col-8>
-<h1>TOP</h1>
+
+<div class = col-8>
+<% @maps.each do |map| %>
+  <%= map.body %>
+<% end %>
 
 <div id='map'></div>
 <style>
 #map {
-  height: 600px;
+  height: 900px;
   width: 100%;
 }
 </style>
@@ -38,7 +42,9 @@
       });
       let infowindow = new google.maps.InfoWindow({
         position: markerLatLng,
-        content: "<a href='<%= map_url(map.id) %>' target='_blank'><%= map.shop_name %></a>"
+        content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.shop_name %></a>"
+        // content: "<%= link_to map.shop_name ,maps_path %>"
+
       }); //ここで詳細ページへのリンクを表示させる
       marker.addListener('click', function() {
         infowindow.open(map, marker);
@@ -46,6 +52,7 @@
     })();
     <% end %>
    }
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
