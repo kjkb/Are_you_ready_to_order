@@ -1,6 +1,5 @@
-<div class = col-8>
 
-<div class = col-8>
+<div class = "col-10">
 <% @maps.each do |map| %>
   <%= map.body %>
 <% end %>
@@ -55,5 +54,4 @@
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-</div>
 </div>

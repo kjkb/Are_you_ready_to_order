@@ -21,15 +21,11 @@ class Public::MapsController < ApplicationController
     @map = Map.find(params[:id])
   end
 
-  def search
-    # @maps = params[:map_id].present? ? Map.find(params[:map_id]).cooking_genre : ""
-    @maps = params[:map]
-  end
 
 private
 
   def map_params
-      params.require(:map).permit(:lat, :lng, :shop_name, :body, :image, :user_id)
+      params.require(:map).permit(:lat, :lng, :shop_name, :body, :image, :user_id, :peko, :cooking_genre)
   end
 
 end

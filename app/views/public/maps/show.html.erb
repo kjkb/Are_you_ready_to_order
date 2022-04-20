@@ -5,16 +5,22 @@
   <% end %>
 
   <!--いいね機能-->
-  <% if @map.favorited_by?(current_user) %>
-    <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-    <%= link_to map_favorites_path(@map.id), method: :delete do %>
-    ♥<%= @map.favorites.count %> いいね
+  <% if user_signed_in? %>
+    <% if @map.favorited_by?(current_user) %>
+      <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+      <%= link_to map_favorites_path(@map.id), method: :delete do %>
+      　♥<%= @map.favorites.count %> いいね
+      <% end %>
+    <% else %>
+      <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+      <%= link_to map_favorites_path(@map.id), method: :post do %>
+      　♡<%= @map.favorites.count %> いいね
+      <% end %>
     <% end %>
   <% else %>
-    <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-    <%= link_to map_favorites_path(@map.id), method: :post do %>
-    ♡<%= @map.favorites.count %> いいね
-    <% end %>
   <% end %>
 
-<%= @map.shop_name %>
+  <%= @map.shop_name %>
+  <%= @map.peko %>
+  <%= @map.body %>
+  <%= @map.cooking_genre %>

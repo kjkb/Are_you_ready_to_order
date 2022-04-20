@@ -1,13 +1,27 @@
+<div class = "col-3">
+  <h2>絞り込み-<%= @range %>の店</h2>
 
-
-
-<div class = "col-10">
+  <% @maps.each do |map| %>
+    <div>
+      <% if map.image.attached? %>
+        <%= image_tag map.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <%= map.shop_name %>
+      <%= map.peko %>
+      <%= map.body %>
+      <%= map.cooking_genre %>
+    </div>
+  <% end %>
+</div>
+<div class = "col-8">
 
 
 <div id='map'></div>
 <style>
 #map {
-  height: 100vh;
+  height: 1320px;
   width: 100%;
 }
 </style>
@@ -55,3 +69,4 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
+

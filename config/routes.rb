@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-
+  namespace :public do
+    get 'searches/search'
+  end
+  namespace :admin do
+    resources :users, only: [:index, :show, :edit, :update ]
+  end
 # 顧客用
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -12,17 +17,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-  root to: 'public/home#top'
+ root to: 'public/home#top'
  scope module: :public do
     resources :maps, only: [:index, :show, :new, :create ] do
      resource :favorites, only: [:create, :destroy]
     end
     get 'home/about'
-    get 'map/search'
-    resources :users, only: [:show] do 
-     get :favorites, on: :collection 
+    get 'searches/search'
+    resources :users, only: [:show] do
+     get :favorites, on: :collection
     end
-end
-
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

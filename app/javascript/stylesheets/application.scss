@@ -13,8 +13,8 @@
   height: 100%;
   // width: 220px;
   float: center;
-  color: #ff9933;
-  background-color: #ff9933;
+  // background-color: #ff9933;
+  background: linear-gradient(#ff9933, pink);
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 10;
@@ -51,4 +51,7 @@
   list-style-type: none;
   text-align: left;
   color: #000000;
+}
+.nav-link{
+  padding: 0 2px;
 }
