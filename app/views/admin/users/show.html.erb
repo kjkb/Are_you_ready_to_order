@@ -1,2 +1,43 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class = "col-8 pl-5 pt-3" >
+  <h2><%= @user.name %>さんの詳細画面</h2>
+    <div class="form-group row">
+      <div class="col-2">会員ID</div>
+      <div class="col-5"><%= @user.id %></div>
+    </div>
+    <div class="form-group row">
+      <div class="col-2">氏名</div>
+      <div class="col-5">
+          <%= @user.name %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-2">メールアドレス</div>
+      <div class="col-5"><%= @user.email %></div>
+    </div>
+    <div class="form-group row">
+      <div class="col-2">会員ステータス</div>
+      <div class="col-5">
+          <% if @user.is_deleted == false %>
+              有効
+          <% else %>
+              退会
+          <% end %>
+      </div>
+    </div>
+    <div>
+      <h5><%= link_to "編集する", edit_admin_user_path %></h5>
+    </div>
+    <br>
+  <h2><%= @user.name %>さんの投稿一覧画面</h2>
+      <% @maps.each do |map| %>
+    <div class = pt-2>
+        <% if map.image.attached? %>
+          <%= image_tag map.image, size: "100x80" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "100x100" %>
+        <% end %>
+      　　店名<%= map.shop_name %>
+          注文内容<%= map.body %>
+      <% end %>
+    </div>
+</div>

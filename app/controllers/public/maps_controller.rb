@@ -19,8 +19,8 @@ class Public::MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
+    @post_comment = PostComment.new
   end
-
 
 private
 

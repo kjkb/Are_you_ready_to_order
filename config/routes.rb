@@ -21,6 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  scope module: :public do
     resources :maps, only: [:index, :show, :new, :create ] do
      resource :favorites, only: [:create, :destroy]
+     resources :post_comments, only: [:create, :destroy]
     end
     get 'home/about'
     get 'searches/search'

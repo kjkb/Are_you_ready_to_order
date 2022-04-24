@@ -5,11 +5,8 @@ class Public::UsersController < ApplicationController
   #   @favorites = Favorite.where(user_id: @user.id)
   # end
 def show
-    @user = User.find(params[:id])
-    @maps = @user.maps
-
-    favorites = Favorite.where(user_id: current_user.id).pluck(:map_id)
-    @mark_list = Map.find(favorites)
+  favorites = Favorite.where(user_id: current_user.id).pluck(:map_id)
+  @mark_list = Map.find(favorites)
 end
 
 end

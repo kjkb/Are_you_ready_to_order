@@ -1,26 +1,68 @@
-  <% if @map.image.attached? %>
-    <%= image_tag @map.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-
-  <!--いいね機能-->
-  <% if user_signed_in? %>
-    <% if @map.favorited_by?(current_user) %>
-      <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-      <%= link_to map_favorites_path(@map.id), method: :delete do %>
-      　♥<%= @map.favorites.count %> いいね
-      <% end %>
+<div class = "col-4" >
+  <div class = "map_shows pt-4 pl-4" >
+    <h1><%= @map.shop_name %>の詳細</h1>
+    <% if @map.image.attached? %>
+      <%= image_tag @map.image, size: "800x700" %>
     <% else %>
-      <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-      <%= link_to map_favorites_path(@map.id), method: :post do %>
-      　♡<%= @map.favorites.count %> いいね
-      <% end %>
+      <%= image_tag 'no_image', size: "800x800" %>
     <% end %>
-  <% else %>
-  <% end %>
+  </div>
+</div>
 
-  <%= @map.shop_name %>
-  <%= @map.peko %>
-  <%= @map.body %>
-  <%= @map.cooking_genre %>
+<div class = "col-7" >
+  <div class = "map_shows pt-5" >
+    <div class = "map_show pt-5">
+      <h3>店名　　　<%= @map.shop_name %></h3>
+    </div>
+    <div class = "map_show pt-2">
+      <h3>注文内容　<%= @map.body %></h3>
+    </div>
+    <div class = "map_show pt-2">
+      <h3>ジャンル　<%= @map.cooking_genre %></h3>
+    </div>
+    <div class = "map_show pt-2">
+      <h3>注文の量　<%= @map.peko %></h3>
+    </div>
+    <!--いいね機能-->
+    <div class = "map_show pt-3">
+      <h3><% if user_signed_in? %>
+        <% if @map.favorited_by?(current_user) %>
+          <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+          <%= link_to map_favorites_path(@map.id), method: :delete do %>
+          ♥いいね　<%= @map.favorites.count %>
+          <% end %>
+        <% else %>
+          <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+          <%= link_to map_favorites_path(@map.id), method: :post do %>
+          ♡いいね　<%= @map.favorites.count %>
+          <% end %>　(”いいね”するとお気に入り一覧に追加されます)
+        <% end %>
+        <% else %>
+      <% end %>
+      </h3>
+    </div>
+    <div class = "map_show pt-5">
+      <h4>コメント件数：<%= @map.post_comments.count %></h4>
+    </div>
+
+    <!--コメント機能-->
+    <h4>
+      <% @map.post_comments.each do |post_comment| %>
+        <div class = "map_show pt-2">
+          <%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          <%= post_comment.comment %>　
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", map_post_comment_path(post_comment.map, post_comment), method: :delete %>
+          <% end %>
+        </div>
+      <% end %>
+    </h4>
+    <div　class = "comment_area">
+      <%= form_with model: [@map, @post_comment] do |f| %>
+        <%= f.text_area :comment, size: "50x10", placeholder: "コメントはここに！" %><br>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  </div>
+</div>

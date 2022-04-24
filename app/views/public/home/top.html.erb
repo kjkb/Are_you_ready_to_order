@@ -1,13 +1,10 @@
 
-<div class = "col-10">
-<% @maps.each do |map| %>
-  <%= map.body %>
-<% end %>
+<div class = "col-11">
 
 <div id='map'></div>
 <style>
 #map {
-  height: 900px;
+  height: 100vh;
   width: 100%;
 }
 </style>
@@ -41,7 +38,7 @@
       });
       let infowindow = new google.maps.InfoWindow({
         position: markerLatLng,
-        content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.shop_name %></a>"
+        content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.peko %></a>"
         // content: "<%= link_to map.shop_name ,maps_path %>"
 
       }); //ここで詳細ページへのリンクを表示させる

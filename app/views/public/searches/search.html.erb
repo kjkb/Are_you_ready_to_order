@@ -1,72 +1,75 @@
-<div class = "col-3">
+<div class = "col-2 pt-3 pl-1">
   <h2>絞り込み-<%= @range %>の店</h2>
-
   <% @maps.each do |map| %>
-    <div>
-      <% if map.image.attached? %>
-        <%= image_tag map.image, size: "200x200" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-      <% end %>
-      <%= map.shop_name %>
-      <%= map.peko %>
-      <%= map.body %>
-      <%= map.cooking_genre %>
+    <div class ="row">
+      <div class = "col-4 pt-2">
+        <% if map.image.attached? %>
+          <%= image_tag map.image, size: "120x100" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "120x120" %>
+        <% end %>
+      </div>
+      <div class = "col-8 pt-2 pl-2">
+        <%= link_to map_path(map) do %>
+         <%= map.shop_name %><br>
+         <% end %>
+        <%= map.body %><br>
+        <%= map.cooking_genre %>
+      </div>
     </div>
   <% end %>
 </div>
-<div class = "col-8">
 
-
-<div id='map'></div>
-<style>
-#map {
-  height: 1320px;
-  width: 100%;
-}
-</style>
-<!-- js部分 -->
-<script>
-    function initMap() {
-    //初期表示位置
-    let latlng = new google.maps.LatLng(38.60, 139.5);
-    //デザイン
-    let styles = [
-       {
-        stylers: [
-         { "saturation": 0 },
-         { "lightness": 0 }
-        ]
-       }
-      ];
-    let map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 5.5,
-      styles: styles,
-      center: latlng
-    });
-    let transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
-    <% @maps.each do |map| %>
-    ( function() {
-      let markerLatLng = new google.maps.LatLng({lat: <%= map.lat %>, lng: <%= map.lng %>});
-      let marker = new google.maps.Marker({
-        position: markerLatLng,
-        map: map
+<div class = "col-9">
+  <div id='map'></div>
+  <style>
+  #map {
+    height: 1320px;
+    width: 100%;
+  }
+  </style>
+  <!-- js部分 -->
+  <script>
+      function initMap() {
+      //初期表示位置
+      let latlng = new google.maps.LatLng(38.60, 139.5);
+      //デザイン
+      let styles = [
+         {
+          stylers: [
+           { "saturation": 0 },
+           { "lightness": 0 }
+          ]
+         }
+        ];
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 5.5,
+        styles: styles,
+        center: latlng
       });
-      let infowindow = new google.maps.InfoWindow({
-        position: markerLatLng,
-        content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.peko %></a>"
-        // content: "<%= link_to map.shop_name ,maps_path %>"
-
-      }); //ここで詳細ページへのリンクを表示させる
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-    })();
-    <% end %>
-   }
-
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+      let transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+      <% @maps.each do |map| %>
+      ( function() {
+        let markerLatLng = new google.maps.LatLng({lat: <%= map.lat %>, lng: <%= map.lng %>});
+        let marker = new google.maps.Marker({
+          position: markerLatLng,
+          map: map
+        });
+        let infowindow = new google.maps.InfoWindow({
+          position: markerLatLng,
+          content: "<a href='<%= map_url(map.id) %>'><%= map.shop_name %><br><%= map.peko %></a>"
+          // content: "<%= link_to map.shop_name ,maps_path %>"
+  
+        }); //ここで詳細ページへのリンクを表示させる
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      })();
+      <% end %>
+     }
+  
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
 
