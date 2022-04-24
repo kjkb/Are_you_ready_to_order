@@ -10,7 +10,8 @@ class Map < ApplicationRecord
   validates :body, presence: true
   validates :lat, presence: true
   validates :lng, presence: true
- 
+  validates :cooking_genre, presence: true
+  validates :peko, presence: true
    
     def favorited_by?(user)
       favorites.exists?(user_id: user.id)

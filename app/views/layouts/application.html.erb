@@ -20,13 +20,21 @@
           <div class="listings_channels">
                 <div class = "pecokuro"><a class="navbar-brand"><%= image_tag 'logo-peco2.png', width: "239%", height: "150%", class: "logo" %></a></div>
                 <div class = "search_peko">
-                  <% if current_page?(maps_path)%>
+                  <% if current_page?(maps_path || searches_search_path)%>
                     <h6>今の腹ペコ度合いでお店の<br>絞込みできます。</h6>
                     <div class = "form-select">
                       <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
                         <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
                          <div class = "submit" ><%= f.submit '検索' %></div>
                         <% end %>
+                    </div>
+                  <% elsif current_page?(searches_search_path)%>
+                    <h6>今の腹ペコ度合いでお店の<br>絞込みできます。</h6>
+                    <div class = "form-select">
+                      <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+                        <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
+                        <div class = "submit" ><%= f.submit '検索' %></div>
+                      <% end %>
                     </div>
                   <% end %>
                 </div>

@@ -1,4 +1,7 @@
 <div class = "col-6 pt-5 pl-5">
+
+  <%= flash[:alert] %>
+
   <h2>ログイン</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

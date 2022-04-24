@@ -11,5 +11,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email,  length: { maximum: 30 }
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 end
-

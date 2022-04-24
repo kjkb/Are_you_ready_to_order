@@ -1,7 +1,17 @@
-
 <div class = "col-2">
   <div class = "map_shows pt-4 pl-4" >
     <h3>投稿する</h3>
+
+    <!--エラーメッセージ-->
+    <% if @map.errors.any? %>
+      <%= @map.errors.count %>件の項目が未入力です。
+      <ul>
+        <% @map.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <p>■まずは場所を検索して地図にピンを<br>　設置してください</p>
     <input id="address" type="textbox">
     <input type="button" value="検索" onclick="codeAddress()">

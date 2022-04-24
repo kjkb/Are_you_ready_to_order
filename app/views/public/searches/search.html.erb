@@ -1,23 +1,25 @@
-<div class = "col-2 pt-3 pl-1">
-  <h2>絞り込み-<%= @range %>の店</h2>
-  <% @maps.each do |map| %>
-    <div class ="row">
-      <div class = "col-4 pt-2">
-        <% if map.image.attached? %>
-          <%= image_tag map.image, size: "120x100" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "120x120" %>
-        <% end %>
+<div class = "col-2">
+  <div class = "narrow-d pt-4">
+    <h2>絞り込み-<%= @range %>の店</h2>
+    <% @maps.each do |map| %>
+      <div class ="row">
+        <div class = "col-4">
+          <% if map.image.attached? %>
+            <%= image_tag map.image, size: "100x80" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
+        </div>
+        <div class = "col-8 pt-2">
+          <%= link_to map_path(map) do %>
+           店名　<%= map.shop_name %><br>
+          <% end %>
+          注文内容　<%= map.body %><br>
+          ジャンル　<%= map.cooking_genre %>
+        </div>
       </div>
-      <div class = "col-8 pt-2 pl-2">
-        <%= link_to map_path(map) do %>
-         <%= map.shop_name %><br>
-         <% end %>
-        <%= map.body %><br>
-        <%= map.cooking_genre %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class = "col-9">

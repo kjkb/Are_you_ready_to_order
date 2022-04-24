@@ -1,6 +1,6 @@
 <div class = "col-4" >
   <div class = "map_shows pt-4 pl-4" >
-    <h1><%= @map.shop_name %>の詳細</h1>
+    <h1><%= @map.shop_name %>の詳細</h1><br>
     <% if @map.image.attached? %>
       <%= image_tag @map.image, size: "800x700" %>
     <% else %>
@@ -10,7 +10,7 @@
 </div>
 
 <div class = "col-7" >
-  <div class = "map_shows pt-5" >
+  <div class = "map_shows pt-5 pl-5" >
     <div class = "map_show pt-5">
       <h3>店名　　　<%= @map.shop_name %></h3>
     </div>
@@ -51,7 +51,7 @@
         <div class = "map_show pt-2">
           <%= post_comment.user.name %>
           <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          <%= post_comment.comment %>　
+          <%= post_comment.comment %>
           <% if post_comment.user == current_user %>
             <%= link_to "削除", map_post_comment_path(post_comment.map, post_comment), method: :delete %>
           <% end %>

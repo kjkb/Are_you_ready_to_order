@@ -1,34 +1,32 @@
-
 <div class = "col-11">
-  <div class = "user_show pt-4" >
-    <div class = "top pl-5">
-      <h1>お気に入り一覧</h1>
-    </div>
-    <div class ="grid" >
+  <div class = "narrow-d pt-4 pl-3">
+    <h1>お気に入り一覧</h1>
+    <div class ="grid pt-3">
       <% if @mark_list.present? %>
-      　<% @mark_list.each do |map| %>
-          <div class="card" style="width: 350px;">
-          	<div class="card-body">
-          	  <%= link_to map_path(map) do %>
-            		<h4 class="card-title">店名　<%= map.shop_name %></h4>
-            	<% end %>
-            	<p class="card-text">ジャンル　<%= map.cooking_genre %></p>
-            	<p class="card-text">注文内容　<%= map.body %></p>
-          		<p class="card-text"><%= map.post_comments.count %>コメント　　<%=map.favorites.count %>いいね</p>
-          	</div>
-        	  <div class="card-img-bottom">
-            	<% if map.image.attached? %>
-            　　<%= image_tag map.image, size: "250x200" %>
-          　　<% else %>
-            　　<%= image_tag 'no_image', size: "200x200" %>
-          　　<% end %>
-        　   </div>
-      　   </div>
-    　　<% end %>
+          <% @mark_list.each do |map| %>
+            <div class = "col" >
+              <div class="card">
+              	<div class="card-body">
+              	  <%= link_to map_path(map) do %>
+                		<h4 class="card-title">店名　<%= map.shop_name %></h4>
+                	<% end %>
+                	<p class="card-text">ジャンル　<%= map.cooking_genre %></p>
+                	<p class="card-text">注文内容　<%= map.body %></p>
+              		<p class="card-text"><%= map.post_comments.count %>コメント　　<%=map.favorites.count %>いいね</p>
+              	</div>
+            	  <div class="card-img-bottom">
+                	<% if map.image.attached? %>
+                　　<%= image_tag map.image, size: "250x200" %>
+              　　<% else %>
+                　　<%= image_tag 'no_image', size: "200x200" %>
+              　　<% end %>
+            　   </div>
+            　</div> 
+            </div>
+          <% end %>
     　<% else %>
     　 <h3>お気に入りにしている投稿はございません。</h3>
     　<% end %>
-  　</div>
+    </div>
   </div>
 </div>
-
