@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
   </head>
@@ -18,7 +17,9 @@
       <div class = "col-1">
         <div class="listings">
           <div class="listings_channels">
-                <div class = "pecokuro"><a class="navbar-brand"><%= image_tag 'logo-peco2.png', width: "239%", height: "150%", class: "logo" %></a></div>
+                <div class = "pecokuro">
+                  <p><%= image_tag 'logo-peco2.png', width: "150%", height: "80%" %></p>
+                </div>
                 <div class = "search_peko">
                   <% if current_page?(maps_path || searches_search_path)%>
                     <h6>今の腹ペコ度合いでお店の<br>絞込みできます。</h6>
@@ -84,5 +85,4 @@
      <%= yield %>
     </div>
   </body>
-
 </html>

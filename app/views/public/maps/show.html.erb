@@ -2,9 +2,9 @@
   <div class = "map_shows pt-4 pl-4" >
     <h1><%= @map.shop_name %>の詳細</h1><br>
     <% if @map.image.attached? %>
-      <%= image_tag @map.image, size: "800x700" %>
+      <%= image_tag @map.image, size: "650x590" %>
     <% else %>
-      <%= image_tag 'no_image', size: "800x800" %>
+      <%= image_tag 'no_image', size: "650x700" %>
     <% end %>
   </div>
 </div>
@@ -35,7 +35,7 @@
           <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
           <%= link_to map_favorites_path(@map.id), method: :post do %>
           ♡いいね　<%= @map.favorites.count %>
-          <% end %>　(”いいね”するとお気に入り一覧に追加されます)
+          <% end %>　(”いいね”するとお気に入りに追加されます)
         <% end %>
         <% else %>
       <% end %>
