@@ -22,7 +22,7 @@
                 </div>
                 <div class = "search_peko">
                   <% if current_page?(maps_path || searches_search_path)%>
-                    <h6>今の腹ペコ度合いでお店の<br>絞込みできます。</h6>
+                    <h7>今の腹ペコ度でお店の絞込みできます。</h7>
                     <div class = "form-select">
                       <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
                         <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
@@ -30,7 +30,7 @@
                         <% end %>
                     </div>
                   <% elsif current_page?(searches_search_path)%>
-                    <h6>今の腹ペコ度合いでお店の<br>絞込みできます。</h6>
+                    <h7>今の腹ペコ度でお店の絞込みできます。</h7>
                     <div class = "form-select">
                       <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
                         <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>

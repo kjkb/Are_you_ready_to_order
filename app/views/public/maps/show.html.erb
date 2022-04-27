@@ -25,44 +25,49 @@
     </div>
     <!--いいね機能-->
     <div class = "map_show pt-3">
-      <h3><% if user_signed_in? %>
-        <% if @map.favorited_by?(current_user) %>
-          <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-          <%= link_to map_favorites_path(@map.id), method: :delete do %>
-          ♥いいね　<%= @map.favorites.count %>
+      <h3>
+        <% if user_signed_in? %>
+          <% if @map.favorited_by?(current_user) %>
+            <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+            <%= link_to map_favorites_path(@map.id), method: :delete do %>
+            ♥いいね　<%= @map.favorites.count %>
+            <% end %>
+          <% else %>
+            <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+            <%= link_to map_favorites_path(@map.id), method: :post do %>
+            ♡いいね　<%= @map.favorites.count %>
+            <% end %>　(”いいね”するとお気に入りに追加されます)
           <% end %>
-        <% else %>
-          <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-          <%= link_to map_favorites_path(@map.id), method: :post do %>
-          ♡いいね　<%= @map.favorites.count %>
-          <% end %>　(”いいね”するとお気に入りに追加されます)
+          <% else %>
         <% end %>
-        <% else %>
-      <% end %>
       </h3>
     </div>
     <div class = "map_show pt-5">
-      <h4>コメント件数：<%= @map.post_comments.count %></h4>
+      <% if user_signed_in? %>
+      　<h4>コメント件数：<%= @map.post_comments.count %></h4>
+      <% end %>　
     </div>
 
     <!--コメント機能-->
-    <h4>
-      <% @map.post_comments.each do |post_comment| %>
-        <div class = "map_show pt-2">
-          <%= post_comment.user.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          <%= post_comment.comment %>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", map_post_comment_path(post_comment.map, post_comment), method: :delete %>
-          <% end %>
-        </div>
-      <% end %>
-    </h4>
-    <div　class = "comment_area">
-      <%= form_with model: [@map, @post_comment] do |f| %>
-        <%= f.text_area :comment, size: "50x10", placeholder: "コメントはここに！" %><br>
-        <%= f.submit "送信する" %>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <h4>
+        <% @map.post_comments.each do |post_comment| %>
+          <div class = "map_show pt-2">
+            <%= post_comment.user.name %>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            <%= post_comment.comment %>
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", map_post_comment_path(post_comment.map, post_comment), method: :delete %>
+            <% end %>
+          </div>
+        <% end %>
+      </h4>
+      <div　class = "comment_area">
+        <%= form_with model: [@map, @post_comment] do |f| %>
+          <%= f.text_area :comment, size: "50x10", placeholder: "コメントはここに！" %><br>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
