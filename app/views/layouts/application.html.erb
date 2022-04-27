@@ -4,7 +4,6 @@
     <title>Are_you_ready_to_order</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- FontAwesomeの読み込み -->
-    <script src="https://kit.fontawesome.com/6df4ec57ce.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -45,7 +44,7 @@
                   <li class="nav-item nav-link"><h4><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"link" %></h4></h4></li>
                 <% elsif user_signed_in? %>
                   <li class="nav-item nav-link">
-                    <%= link_to maps_path, class:"link" do %><i class="fa-solid fa-utensils fa-5x"></i><div><strong>投稿一覧</strong></div>
+                    <%= link_to maps_path, class:"link" do %><i class="fas fa-utensils fa-5x"></i><div><strong>投稿一覧</strong></div>
                     <% end %>
                   </li>
                   <li class="nav-item nav-link">
