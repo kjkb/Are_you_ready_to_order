@@ -34,9 +34,9 @@
         <% if map.image.attached? %>
           <%= image_tag map.image, size: "100x80" %>
         <% else %>
-          <%= image_tag '/assets/no_image.jpeg', size: "100x100" %>
+          <%= image_tag "no_image.jpg", size: "100x100" %>
         <% end %>
-      　　店名<%= map.shop_name %>
+          店名<%= map.shop_name %>
           注文内容<%= map.body %>
       <% end %>
     </div>

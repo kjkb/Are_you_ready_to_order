@@ -70,7 +70,7 @@ body{
 .grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
   // margin-top: 6%;
   // margin-bottom: 50px;
 }
