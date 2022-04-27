@@ -1,8 +1,8 @@
 <div class = "col-11">
   <div class = "narrow-d pt-4 pl-3">
     <h1>お気に入り一覧</h1>
-      <% if @mark_list.present? %>
-    　　<div class ="grid pt-3">
+    <% if @mark_list.present? %>
+        <div class ="grid pt-3">
           <% @mark_list.each do |map| %>
             <div class = "col" >
               <div class="card">
@@ -16,17 +16,17 @@
               	</div>
             	  <div class="card-img-bottom">
                 	<% if map.image.attached? %>
-                　　<%= image_tag map.image, size: "250x200" %>
-              　　<% else %>
-                　　<%= image_tag '/assets/images/no_image.jpg, size: "200x200" %>
-              　　<% end %>
-            　   </div>
-            　</div>
+                    <%= image_tag map.image, size: "250x200" %>
+                  <% else %>
+                    <%= image_tag '/assets/no_image.jpg', size: "200x200" %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           <% end %>
-    　 　</div>
-    　<% else %>
-    　 <h3>お気に入りにしている投稿はございません。</h3>
-    　<% end %>
+        </div>
+    <% else %>
+       <h3>お気に入りにしている投稿はございません。</h3>
+    <% end %>
   </div>
 </div>
