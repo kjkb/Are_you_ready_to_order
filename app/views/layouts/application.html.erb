@@ -19,25 +19,28 @@
                 <div class = "pecokuro">
                   <p><%= image_tag 'logo-peco2.png', width: "110%", height: "100%" %></p>
                 </div>
-                <div class = "search_peko">
+                  <!--検索機能-->
                   <% if current_page?(maps_path || searches_search_path)%>
-                    <h7>今の腹ペコ度でお店の絞込みできます。</h7>
-                    <div class = "form-select">
-                      <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
-                        <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
-                         <div class = "submit" ><%= f.submit '検索' %></div>
+                    <div class = "search_peko">
+                      <h7>今の腹ペコ度でお店の絞込みできます。</h7>
+                      <div class = "form-select">
+                        <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+                          <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
+                           <div class = "submit" ><%= f.submit '検索' %></div>
                         <% end %>
+                      </div>
                     </div>
                   <% elsif current_page?(searches_search_path)%>
-                    <h7>今の腹ペコ度でお店の絞込みできます。</h7>
-                    <div class = "form-select">
-                      <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
-                        <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
-                        <div class = "submit" ><%= f.submit '検索' %></div>
-                      <% end %>
-                    </div>
+                    <div class = "search_peko">
+                      <h7>今の腹ペコ度でお店の絞込みできます。</h7>
+                      <div class = "form-select">
+                        <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+                          <%= f.select :peko, [['ちょいペコ','ちょいペコ'], ['ペコ','ペコ'], ['ペコMAX','ペコMAX']], {prompt: '  --  選択してください  --  '}, class: "select" %>
+                          <div class = "submit" ><%= f.submit '検索' %></div>
+                        <% end %>
+                      </div>
+                  　</div>
                   <% end %>
-                </div>
               <ul class="channel_list text-center">
                <% if admin_signed_in? %>
                   <li class="nav-item nav-link"><h4><%= link_to "会員一覧", admin_users_path, class:"link" %></h4></li>
