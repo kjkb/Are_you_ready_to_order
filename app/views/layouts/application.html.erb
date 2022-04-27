@@ -3,7 +3,7 @@
   <head>
     <title>Are_you_ready_to_order</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- FontAwesomeの読み込み -->
+    <!-- 文字のフォント変更の読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,7 +17,7 @@
         <div class="listings">
           <div class="listings_channels">
                 <div class = "pecokuro">
-                  <p><%= image_tag 'logo-peco2.png', width: "150%", height: "80%" %></p>
+                  <p><%= image_tag 'logo-peco2.png', width: "110%", height: "100%" %></p>
                 </div>
                 <div class = "search_peko">
                   <% if current_page?(maps_path || searches_search_path)%>
