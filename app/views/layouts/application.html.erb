@@ -48,32 +48,32 @@
                     <% end %>
                   </li>
                   <li class="nav-item nav-link">
-                    <%= link_to new_map_path, class:"link" do %><i class="fa-solid fa-location-dot fa-5x"></i><div><strong>投稿する</strong></div>
+                    <%= link_to new_map_path, class:"link" do %><i class="fas fa-map-marked-alt fa-5x"></i><div><strong>投稿する</strong></div>
                     <% end %>
                   </li>
                   <li class="nav-item nav-link">
-                    <%= link_to user_path(current_user.id), class:"link" do %><i class="fa-regular fa-heart fa-5x"></i><div><strong>お気に入り</strong></div>
+                    <%= link_to user_path(current_user.id), class:"link" do %><i class="fas fa-heart fa-5x"></i><div><strong>お気に入り</strong></div>
                     <% end %>
                   </li>
                   <li class="nav-item nav-link">
-                    <%= link_to destroy_user_session_path, method: :delete, class:"link" do %><i class="fa-solid fa-arrow-right-from-bracket fa-5x"></i><div><strong>ログアウト</strong></div>
+                    <%= link_to destroy_user_session_path, method: :delete, class:"link" do %><i class="fas fa-sign-out-alt fa-5x"></i><div><strong>ログアウト</strong></div>
                     <% end %>
                   </li>
                 <% else %>
                   <li class="nav-item nav-link"><%= link_to root_path, class:"link" do %>
-                    <i class="fa-solid fa-utensils fa-5x"></i><div><strong>投稿一覧</strong></div>
+                    <i class="fas fa-utensils fa-5x"></i><div><strong>投稿一覧</strong></div>
                     <% end %>
                   </li>
                   <li class="nav-item nav-link"><%= link_to home_about_path, class:"link" do %>
-                    <i class="fa-solid fa-book-open-reader fa-5x"></i><div><strong>当サイトについて</strong></div>
+                    <i class="fas fa-book-reader fa-5x"></i><div><strong>当サイトについて</strong></div>
                     <% end %>
                   </li>
                   <li class="nav-item nav-link"><%= link_to new_user_registration_path, class:"link" do %>
-                    <i class="fa-solid fa-user-plus fa-5x"></i><div><strong>新規登録</strong></div>
+                    <i class="fas fa-user-plus fa-5x"></i><div><strong>新規登録</strong></div>
                   <% end %>
                   </li>
                   <li class="nav-item nav-link"><%= link_to new_user_session_path, class:"link" do  %>
-                    <i class="fa-solid fa-arrow-right-to-bracket fa-5x"></i><div><strong>ログイン</strong></div>
+                    <i class="fas fa-sign-in-alt fa-5x"></i><div><strong>ログイン</strong></div>
                   <% end %>
                   </li>
                <% end %>
