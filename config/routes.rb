@@ -19,7 +19,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  root to: 'public/home#top'
  scope module: :public do
-    resources :maps, only: [:index, :show, :new, :create ] do
+    resources :maps, only: [:index, :show, :new, :create, :destroy] do
      resource :favorites, only: [:create, :destroy]
      resources :post_comments, only: [:create, :destroy]
     end

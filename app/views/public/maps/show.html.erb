@@ -41,6 +41,12 @@
           <% else %>
         <% end %>
       </h3>
+      <br>
+      <h3>
+      <% if @map.user == current_user %>
+      <%= link_to "投稿を削除する", map_path(@map), method: :delete, "data-confirm" => "本当に削除しますか？"  %>
+    　<% end %>
+    　</h3>
     </div>
     <div class = "map_show pt-5">
       <% if user_signed_in? %>

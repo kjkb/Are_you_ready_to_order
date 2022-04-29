@@ -16,6 +16,12 @@ class Public::MapsController < ApplicationController
      render :new
     end
   end
+  
+  def destroy
+    @map = Map.find(params[:id])
+    @map.destroy
+    redirect_to maps_path
+  end
 
   def show
     @map = Map.find(params[:id])
